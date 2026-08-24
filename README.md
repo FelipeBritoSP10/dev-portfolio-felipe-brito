@@ -2,7 +2,7 @@
 
 > Full-Stack Developer, Instrutor de Tecnologia e Consultor Técnico.
 
-Este é o repositório oficial do meu portfólio pessoal. O projeto foi desenvolvido com foco em alta performance, acessibilidade e design industrial minimalista para apresentar minhas entregas de software, projetos acadêmicos/pesquisas (CNPq/Estácio) e metodologia de ensino.
+Este é o repositório oficial do meu portfólio pessoal. O projeto foi desenvolvido com foco em alta performance, acessibilidade e design industrial minimalista para apresentar minhas entregas de software, projetos acadêmicos/pesquisas (CNPq/Estácio), projetos com alunos e metodologia de ensino.
 
 ---
 
