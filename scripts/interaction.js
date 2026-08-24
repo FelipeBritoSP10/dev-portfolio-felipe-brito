@@ -1,20 +1,26 @@
-document.addEventListener("DOMContentLoaded", loadComponents);
+document.addEventListener("DOMContentLoaded", () => {
+    loadComponents();
+});
 
 /* =========================================
    COMPONENTES
 ========================================= */
 
-const components = {
-    navbar: "navbar.html",
-    hero: "hero.html",
-    sobre: "sobre.html",
-    servicos: "servicos.html",
-    habilidades: "habilidades.html",
-    projetos: "projetos.html",
-    depoimentos: "depoimentos.html",
-    contatos: "contatos.html",
-    footer: "footer.html"
-};
+const components = [
+    ["navbar", "navbar.html"],
+    ["hero", "hero.html"],
+    ["sobre", "sobre.html"],
+    ["servicos", "servicos.html"],
+    ["habilidades", "habilidades.html"],
+    ["projetos", "projetos.html"],
+    ["depoimentos", "depoimentos.html"],
+    ["contatos", "contatos.html"],
+    ["footer", "footer.html"]
+];
+
+/* =========================================
+   CARDS DOS PROJETOS
+========================================= */
 
 const projectCards = [
     "brito-tasks",
@@ -41,69 +47,108 @@ const projectCards = [
 ========================================= */
 
 async function loadComponents() {
-    await Promise.all(
-        Object.entries(components).map(
-            ([id, file]) => loadComponent(id, file)
-        )
-    );
-
+    await loadMainComponents();
     await loadProjectCards();
 
     initComponents();
 }
 
-async function loadComponent(id, file) {
-    const element = document.getElementById(id);
+/* =========================================
+   COMPONENTES PRINCIPAIS
+========================================= */
 
-    if (!element) return;
+async function loadMainComponents() {
+    await Promise.all(
+        components.map(async ([id, file]) => {
+            const element = document.getElementById(id);
 
-    try {
-        const response = await fetch(`./components/${file}`);
+            if (!element) return;
 
-        if (!response.ok) {
-            throw new Error(`${response.status} - ${file}`);
-        }
+            try {
+                const response = await fetch(
+                    `./components/${file}`
+                );
 
-        element.innerHTML = await response.text();
+                if (!response.ok) {
+                    throw new Error(
+                        `HTTP ${response.status}`
+                    );
+                }
 
-    } catch (error) {
-        console.error(`Erro ao carregar ${file}:`, error);
-    }
+                element.innerHTML =
+                    await response.text();
+
+            } catch (error) {
+                console.error(
+                    `Erro ao carregar ${file}:`,
+                    error
+                );
+            }
+        })
+    );
 }
 
+/* =========================================
+   CARDS DOS PROJETOS
+========================================= */
+
 async function loadProjectCards() {
-    const container = document.getElementById("projects-grid");
+    const container =
+        document.getElementById("projects-grid");
 
     if (!container) return;
 
     try {
         const cards = await Promise.all(
-            projectCards.map(async (project) => {
-
-                const response = await fetch(
-                    `./components/projetos/${project}.html`
-                );
-
-                if (!response.ok) {
-                    throw new Error(
-                        `${response.status} - ${project}`
-                    );
-                }
-
-                return response.text();
-            })
+            projectCards.map(loadProjectCard)
         );
 
-        container.innerHTML = cards.join("");
+        container.innerHTML = cards
+            .filter(Boolean)
+            .join("");
 
     } catch (error) {
-        console.error("Erro ao carregar projetos:", error);
+        console.error(
+            "Erro ao carregar cards dos projetos:",
+            error
+        );
 
         container.innerHTML = `
-            <p class="col-span-full text-center text-muted font-mono text-sm">
-                // erro ao carregar projetos
-            </p>
+            <div class="col-span-full py-10 text-center">
+                <p class="text-muted font-mono text-sm">
+                    // erro ao carregar projetos
+                </p>
+            </div>
         `;
+    }
+}
+
+/* =========================================
+   CARREGAR UM CARD
+========================================= */
+
+async function loadProjectCard(project) {
+    const file =
+        `./components/cards/${project}.html`;
+
+    try {
+        const response = await fetch(file);
+
+        if (!response.ok) {
+            throw new Error(
+                `HTTP ${response.status}`
+            );
+        }
+
+        return await response.text();
+
+    } catch (error) {
+        console.error(
+            `Erro ao carregar card ${project}:`,
+            error
+        );
+
+        return "";
     }
 }
 
@@ -126,22 +171,33 @@ function initComponents() {
 ========================================= */
 
 function initMobileMenu() {
-    const button = document.getElementById("menu-btn");
-    const menu = document.getElementById("mobile-menu");
+    const menuButton =
+        document.getElementById("menu-btn");
 
-    if (!button || !menu || button.dataset.ready) return;
+    const mobileMenu =
+        document.getElementById("mobile-menu");
 
-    button.dataset.ready = "true";
+    if (!menuButton || !mobileMenu) return;
 
-    button.addEventListener("click", () => {
-        menu.classList.toggle("open");
+    if (
+        menuButton.dataset.initialized === "true"
+    ) {
+        return;
+    }
+
+    menuButton.dataset.initialized = "true";
+
+    menuButton.addEventListener("click", () => {
+        mobileMenu.classList.toggle("open");
     });
 
-    menu.querySelectorAll("a").forEach((link) => {
-        link.addEventListener("click", () => {
-            menu.classList.remove("open");
+    mobileMenu
+        .querySelectorAll("a")
+        .forEach((link) => {
+            link.addEventListener("click", () => {
+                mobileMenu.classList.remove("open");
+            });
         });
-    });
 }
 
 /* =========================================
@@ -149,11 +205,18 @@ function initMobileMenu() {
 ========================================= */
 
 function initTypewriter() {
-    const element = document.getElementById("typewriter");
+    const element =
+        document.getElementById("typewriter");
 
-    if (!element || element.dataset.ready) return;
+    if (!element) return;
 
-    element.dataset.ready = "true";
+    if (
+        element.dataset.initialized === "true"
+    ) {
+        return;
+    }
+
+    element.dataset.initialized = "true";
 
     const texts = [
         "criando soluções",
@@ -163,74 +226,160 @@ function initTypewriter() {
     ];
 
     let textIndex = 0;
-    let charIndex = 0;
+    let characterIndex = 0;
     let deleting = false;
 
     function type() {
-        const text = texts[textIndex];
+        const currentText =
+            texts[textIndex];
 
-        element.textContent = deleting
-            ? text.slice(0, charIndex--)
-            : text.slice(0, ++charIndex);
+        if (!deleting) {
+            element.textContent =
+                currentText.substring(
+                    0,
+                    characterIndex + 1
+                );
 
-        if (!deleting && charIndex === text.length) {
-            deleting = true;
-            return setTimeout(type, 1800);
+            characterIndex++;
+
+            if (
+                characterIndex >=
+                currentText.length
+            ) {
+                deleting = true;
+
+                setTimeout(type, 1800);
+
+                return;
+            }
+
+        } else {
+            element.textContent =
+                currentText.substring(
+                    0,
+                    characterIndex - 1
+                );
+
+            characterIndex--;
+
+            if (characterIndex <= 0) {
+                deleting = false;
+
+                textIndex =
+                    (textIndex + 1) %
+                    texts.length;
+            }
         }
 
-        if (deleting && charIndex === 0) {
-            deleting = false;
-            textIndex = (textIndex + 1) % texts.length;
-        }
-
-        setTimeout(type, deleting ? 50 : 90);
+        setTimeout(
+            type,
+            deleting ? 50 : 90
+        );
     }
 
     type();
 }
 
 /* =========================================
-   FILTROS DE PROJETOS
+   FILTROS DOS PROJETOS
 ========================================= */
 
 function initProjectFilters() {
-    const buttons = document.querySelectorAll(".filter-btn");
-    const projects = document.querySelectorAll(".project-card");
+    const buttons =
+        document.querySelectorAll(
+            ".filter-btn"
+        );
 
-    if (!buttons.length || !projects.length) return;
+    const projects =
+        document.querySelectorAll(
+            ".project-card"
+        );
+
+    if (
+        !buttons.length ||
+        !projects.length
+    ) {
+        return;
+    }
 
     buttons.forEach((button) => {
+        if (
+            button.dataset.initialized ===
+            "true"
+        ) {
+            return;
+        }
 
-        button.addEventListener("click", () => {
+        button.dataset.initialized = "true";
 
-            const filter = button.dataset.filter;
+        button.addEventListener(
+            "click",
+            () => {
+                const filter =
+                    button.dataset.filter;
 
-            buttons.forEach((item) => {
-                const active = item === button;
-
-                item.classList.toggle("active", active);
-                item.classList.toggle("border-fn", active);
-                item.classList.toggle("text-fn", active);
-
-                item.classList.toggle("border-line", !active);
-                item.classList.toggle("text-muted", !active);
-            });
-
-            projects.forEach((project) => {
-                const categories =
-                    project.dataset.cat?.split(" ") || [];
-
-                const visible =
-                    filter === "todos" ||
-                    categories.includes(filter);
-
-                project.classList.toggle(
-                    "hidden",
-                    !visible
+                updateFilterButtons(
+                    button,
+                    buttons
                 );
-            });
-        });
+
+                projects.forEach(
+                    (project) => {
+                        const categories =
+                            project.dataset.cat ||
+                            "";
+
+                        const categoryList =
+                            categories.split(" ");
+
+                        const show =
+                            filter === "todos" ||
+                            categoryList.includes(
+                                filter
+                            );
+
+                        project.classList.toggle(
+                            "hidden",
+                            !show
+                        );
+                    }
+                );
+            }
+        );
     });
+}
+
+/* =========================================
+   BOTÕES DOS FILTROS
+========================================= */
+
+function updateFilterButtons(
+    activeButton,
+    buttons
+) {
+    buttons.forEach((button) => {
+        button.classList.remove(
+            "active",
+            "border-fn",
+            "text-fn"
+        );
+
+        button.classList.add(
+            "border-line",
+            "text-muted"
+        );
+    });
+
+    activeButton.classList.add(
+        "active",
+        "border-fn",
+        "text-fn"
+    );
+
+    activeButton.classList.remove(
+        "border-line",
+        "text-muted"
+    );
 }
 
 /* =========================================
@@ -239,79 +388,134 @@ function initProjectFilters() {
 
 function initTestimonials() {
     const track =
-        document.getElementById("testimonial-track") ||
-        document.querySelector(".testimonial-track");
+        document.getElementById(
+            "testimonial-track"
+        ) ||
+        document.querySelector(
+            ".testimonial-track"
+        );
 
     const slides =
-        document.querySelectorAll(".testimonial-slide");
+        document.querySelectorAll(
+            ".testimonial-slide"
+        );
 
-    const prev =
-        document.getElementById("prev-btn");
+    const previousButton =
+        document.getElementById(
+            "prev-btn"
+        );
 
-    const next =
-        document.getElementById("next-btn");
+    const nextButton =
+        document.getElementById(
+            "next-btn"
+        );
 
     const dotsContainer =
         document.getElementById("dots");
 
-    if (!track || !slides.length || track.dataset.ready) {
+    if (
+        !track ||
+        !slides.length
+    ) {
         return;
     }
 
-    track.dataset.ready = "true";
+    if (
+        track.dataset.initialized ===
+        "true"
+    ) {
+        return;
+    }
 
-    let current = 0;
+    track.dataset.initialized = "true";
 
-    const dots = [];
+    let currentSlide = 0;
 
-    slides.forEach((_, index) => {
+    /* Dots */
 
-        if (!dotsContainer) return;
+    if (dotsContainer) {
+        dotsContainer.innerHTML = "";
 
-        const dot = document.createElement("button");
+        slides.forEach((_, index) => {
+            const dot =
+                document.createElement(
+                    "button"
+                );
 
-        dot.className = "dot-btn";
-        dot.setAttribute(
-            "aria-label",
-            `Ir para depoimento ${index + 1}`
-        );
+            dot.className =
+                "dot-btn";
 
-        dot.addEventListener("click", () => {
-            current = index;
-            update();
-        });
+            dot.setAttribute(
+                "aria-label",
+                `Ir para depoimento ${index + 1}`
+            );
 
-        dotsContainer.appendChild(dot);
-        dots.push(dot);
-    });
+            dot.addEventListener(
+                "click",
+                () => {
+                    currentSlide =
+                        index;
 
-    function update() {
-        track.style.transform =
-            `translateX(-${current * 100}%)`;
+                    updateSlider();
+                }
+            );
 
-        dots.forEach((dot, index) => {
-            dot.classList.toggle(
-                "active",
-                index === current
+            dotsContainer.appendChild(
+                dot
             );
         });
     }
 
-    prev?.addEventListener("click", () => {
-        current =
-            current === 0
-                ? slides.length - 1
-                : current - 1;
+    const dots =
+        dotsContainer
+            ? dotsContainer.querySelectorAll(
+                ".dot-btn"
+            )
+            : [];
 
-        update();
-    });
+    function updateSlider() {
+        track.style.transform =
+            `translateX(-${currentSlide * 100}%)`;
 
-    next?.addEventListener("click", () => {
-        current = (current + 1) % slides.length;
-        update();
-    });
+        dots.forEach(
+            (dot, index) => {
+                dot.classList.toggle(
+                    "active",
+                    index ===
+                        currentSlide
+                );
+            }
+        );
+    }
 
-    update();
+    /* Anterior */
+
+    previousButton?.addEventListener(
+        "click",
+        () => {
+            currentSlide =
+                currentSlide === 0
+                    ? slides.length - 1
+                    : currentSlide - 1;
+
+            updateSlider();
+        }
+    );
+
+    /* Próximo */
+
+    nextButton?.addEventListener(
+        "click",
+        () => {
+            currentSlide =
+                (currentSlide + 1) %
+                slides.length;
+
+            updateSlider();
+        }
+    );
+
+    updateSlider();
 }
 
 /* =========================================
@@ -319,137 +523,227 @@ function initTestimonials() {
 ========================================= */
 
 function initContactForm() {
-    const form = document.getElementById("contact-form");
+    const form =
+        document.getElementById(
+            "contact-form"
+        );
 
-    if (!form || form.dataset.ready) return;
+    if (!form) return;
 
-    form.dataset.ready = "true";
+    if (
+        form.dataset.initialized ===
+        "true"
+    ) {
+        return;
+    }
 
-    const fields = [
-        document.getElementById("name"),
-        document.getElementById("email"),
-        document.getElementById("message")
-    ].filter(Boolean);
+    form.dataset.initialized = "true";
+
+    const name =
+        document.getElementById("name");
+
+    const email =
+        document.getElementById("email");
+
+    const message =
+        document.getElementById(
+            "message"
+        );
 
     const success =
-        document.getElementById("form-success");
+        document.getElementById(
+            "form-success"
+        );
 
-    form.addEventListener("submit", (event) => {
+    form.addEventListener(
+        "submit",
+        (event) => {
+            event.preventDefault();
 
-        event.preventDefault();
+            const fields = [
+                name,
+                email,
+                message
+            ].filter(Boolean);
 
-        let valid = true;
+            let valid = true;
 
-        fields.forEach((field) => {
+            fields.forEach((field) => {
+                const error =
+                    field.parentElement?.querySelector(
+                        ".error-msg"
+                    );
 
-            const error =
-                field.parentElement?.querySelector(
-                    ".error-msg"
-                );
+                let fieldValid =
+                    field.value.trim() !== "";
 
-            const value = field.value.trim();
+                /* Validação do e-mail */
 
-            let fieldValid = Boolean(value);
+                if (
+                    field === email &&
+                    field.value.trim()
+                ) {
+                    const emailRegex =
+                        /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+                    fieldValid =
+                        emailRegex.test(
+                            field.value.trim()
+                        );
+                }
+
+                if (!fieldValid) {
+                    valid = false;
+
+                    error?.classList.remove(
+                        "hidden"
+                    );
+                } else {
+                    error?.classList.add(
+                        "hidden"
+                    );
+                }
+            });
 
             if (
-                field === document.getElementById("email") &&
-                value
+                valid &&
+                success
             ) {
-                fieldValid =
-                    /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+                success.classList.remove(
+                    "hidden"
+                );
+
+                form.reset();
             }
-
-            error?.classList.toggle(
-                "hidden",
-                fieldValid
-            );
-
-            if (!fieldValid) {
-                valid = false;
-            }
-        });
-
-        if (!valid) return;
-
-        success?.classList.remove("hidden");
-
-        form.reset();
-    });
+        }
+    );
 }
 
 /* =========================================
-   REVEAL
+   REVEAL ANIMATION
 ========================================= */
 
 function initRevealAnimation() {
     const elements =
-        document.querySelectorAll(".reveal");
+        document.querySelectorAll(
+            ".reveal"
+        );
 
     if (!elements.length) return;
 
-    if (!("IntersectionObserver" in window)) {
-        elements.forEach((element) => {
-            element.classList.add("in");
-        });
+    /* Fallback */
+
+    if (
+        !(
+            "IntersectionObserver"
+            in window
+        )
+    ) {
+        elements.forEach(
+            (element) => {
+                element.classList.add(
+                    "in"
+                );
+            }
+        );
 
         return;
     }
 
-    const observer = new IntersectionObserver(
-        (entries) => {
+    const observer =
+        new IntersectionObserver(
+            (entries) => {
+                entries.forEach(
+                    (entry) => {
+                        if (
+                            !entry.isIntersecting
+                        ) {
+                            return;
+                        }
 
-            entries.forEach(({ target, isIntersecting }) => {
+                        const element =
+                            entry.target;
 
-                if (!isIntersecting) return;
+                        element.classList.add(
+                            "in"
+                        );
 
-                target.classList.add("in");
+                        /* Barras de habilidades */
 
-                target
-                    .querySelectorAll(".skill-fill")
-                    .forEach((fill) => {
-                        fill.style.width =
-                            fill.dataset.width || "100%";
-                    });
+                        const skillFills =
+                            element.querySelectorAll(
+                                ".skill-fill"
+                            );
 
-                observer.unobserve(target);
-            });
-        },
-        {
-            threshold: 0.15
+                        skillFills.forEach(
+                            (fill) => {
+                                const width =
+                                    fill.dataset.width ||
+                                    "100%";
+
+                                fill.style.width =
+                                    width;
+                            }
+                        );
+
+                        observer.unobserve(
+                            element
+                        );
+                    }
+                );
+            },
+            {
+                threshold: 0.15
+            }
+        );
+
+    elements.forEach(
+        (element) => {
+            observer.observe(element);
         }
     );
-
-    elements.forEach((element) => {
-        observer.observe(element);
-    });
 }
 
 /* =========================================
-   SCROLL SUAVE
+   SMOOTH SCROLL
 ========================================= */
 
 function initSmoothScroll() {
+    document.addEventListener(
+        "click",
+        (event) => {
+            const link =
+                event.target.closest(
+                    'a[href^="#"]'
+                );
 
-    document.addEventListener("click", (event) => {
+            if (!link) return;
 
-        const link =
-            event.target.closest('a[href^="#"]');
+            const targetId =
+                link.getAttribute(
+                    "href"
+                );
 
-        if (!link) return;
+            if (
+                !targetId ||
+                targetId === "#"
+            ) {
+                return;
+            }
 
-        const id = link.getAttribute("href");
+            const target =
+                document.querySelector(
+                    targetId
+                );
 
-        if (!id || id === "#") return;
+            if (!target) return;
 
-        const target = document.querySelector(id);
+            event.preventDefault();
 
-        if (!target) return;
-
-        event.preventDefault();
-
-        target.scrollIntoView({
-            behavior: "smooth",
-            block: "start"
-        });
-    });
+            target.scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
+        }
+    );
 }
