@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Felipe Brito — Portfólio</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+<link rel="stylesheet" href="./styles/style.css">
+
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          void: '#0d1117',
+          surface: '#161b27',
+          surface2: '#1e2535',
+          line: '#2a3348',
+          ink: '#e8f0fe',
+          muted: '#8b9bbf',
+          tag: '#60a5fa',
+          str: '#93c5fd',
+          fn: '#38bdf8',
+        },
+        fontFamily: {
+          mono: ['"JetBrains Mono"', 'monospace'],
+          sora: ['"Sora"', 'sans-serif'],
+        }
+      }
+    }
+  }
+</script>
+
+</head>
+<body class="bg-void text-ink font-sora antialiased">
+
+<!-- ============ NAV ============ -->
+<header class="fixed top-0 inset-x-0 z-50 border-b border-line/60 bg-void/80 backdrop-blur">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="h-16 flex items-center justify-between">
+      <a href="#topo" class="font-mono text-sm text-ink">
+        <span class="text-tag">&lt;</span><span class="text-fn">dev</span><span class="text-tag">/&gt;</span>
+        <span class="text-muted ml-1">felipe</span>
+      </a>
+      <nav class="hidden md:flex items-center gap-1 font-mono text-sm">
+        <a href="#sobre" class="tag-link px-3 py-2 text-muted"><span class="text-tag">&lt;</span><span class="tag-name">sobre</span><span class="text-tag">&gt;</span></a>
+        <a href="#servicos" class="tag-link px-3 py-2 text-muted"><span class="text-tag">&lt;</span><span class="tag-name">serviços</span><span class="text-tag">&gt;</span></a>
+        <a href="#habilidades" class="tag-link px-3 py-2 text-muted"><span class="text-tag">&lt;</span><span class="tag-name">skills</span><span class="text-tag">&gt;</span></a>
+        <a href="#projetos" class="tag-link px-3 py-2 text-muted"><span class="text-tag">&lt;</span><span class="tag-name">projetos</span><span class="text-tag">&gt;</span></a>
+        <a href="#depoimentos" class="tag-link px-3 py-2 text-muted"><span class="text-tag">&lt;</span><span class="tag-name">alunos</span><span class="text-tag">&gt;</span></a>
+        <a href="#contato" class="ml-2 px-4 py-2 rounded-md bg-fn text-void font-semibold hover:bg-ink transition-colors">contato()</a>
+      </nav>
+      <button id="menu-btn" class="md:hidden text-ink font-mono text-2xl leading-none">≡</button>
+    </div>
+    <div id="mobile-menu" class="md:hidden font-mono text-sm border-t border-line/60">
+      <a href="#sobre" class="block px-2 py-3 text-muted mobile-link">&lt;sobre&gt;</a>
+      <a href="#servicos" class="block px-2 py-3 text-muted mobile-link">&lt;serviços&gt;</a>
+      <a href="#habilidades" class="block px-2 py-3 text-muted mobile-link">&lt;skills&gt;</a>
+      <a href="#projetos" class="block px-2 py-3 text-muted mobile-link">&lt;projetos&gt;</a>
+      <a href="#depoimentos" class="block px-2 py-3 text-muted mobile-link">&lt;alunos&gt;</a>
+      <a href="#contato" class="block px-2 py-3 text-fn mobile-link">contato()</a>
+    </div>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section id="topo" class="bg-noise pt-32 pb-24 px-6 border-b border-line/60">
+  <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-14 items-center">
+    <div>
+      <p class="font-mono text-sm text-str">// portfólio 2026</p>
+      <h1 class="font-extrabold text-5xl sm:text-6xl mt-4 leading-[1.05]">
+        Olá, eu sou<br><span class="text-fn">Felipe Brito</span>.
+      </h1>
+      <p class="text-muted text-lg mt-5 max-w-md">
+        Desenvolvedor <span class="text-tag">Full Stack</span>, professor de tecnologia
+        e apaixonado por ensinar código de forma acessível e prática.
+      </p>
+      <div class="flex flex-wrap gap-4 mt-8">
+        <a href="#projetos" class="px-5 py-3 rounded-md bg-fn text-void font-mono font-semibold hover:bg-ink transition-colors">ver_projetos()</a>
+        <a href="#contato" class="px-5 py-3 rounded-md border border-line text-ink font-mono hover:border-fn transition-colors">falar_comigo()</a>
+      </div>
+    </div>
+
+    <div class="rounded-xl border border-line bg-surface overflow-hidden shadow-2xl shadow-black/40">
+      <div class="flex items-center gap-2 px-4 py-3 border-b border-line bg-surface2">
+        <span class="w-3 h-3 rounded-full bg-[#ff5f57]"></span>
+        <span class="w-3 h-3 rounded-full bg-[#febc2e]"></span>
+        <span class="w-3 h-3 rounded-full bg-[#28c840]"></span>
+        <span class="ml-3 text-xs text-muted font-mono">sobre-mim.js</span>
+      </div>
+      <div class="p-6 font-mono text-sm leading-7">
+        <p><span class="text-tag">const</span> <span class="text-fn">felipe</span> = {</p>
+        <p class="pl-4"><span class="text-str">nome</span>: <span class="text-fn">"Felipe Brito"</span>,</p>
+        <p class="pl-4"><span class="text-str">stack</span>: <span class="text-fn">"full stack"</span>,</p>
+        <p class="pl-4"><span class="text-str">papeis</span>: [<span class="text-fn">"dev"</span>, <span class="text-fn">"professor"</span>],</p>
+        <p class="pl-4"><span class="text-str">atual</span>: <span id="typewriter" class="text-ink"></span><span class="terminal-caret"></span></p>
+        <p>};</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SOBRE ============ -->
+<section id="sobre" class="max-w-6xl mx-auto px-6 py-24">
+  <p class="font-mono text-sm text-str reveal">// 01 · sobre mim</p>
+  <div class="grid md:grid-cols-5 gap-12 mt-6">
+    <div class="md:col-span-3 reveal">
+      <h2 class="text-3xl font-bold">Desenvolvedor Full Stack & Professor de Tecnologia.</h2>
+      <p class="text-muted mt-5 leading-relaxed">
+        Desenvolvedor full stack com entregas em web, mobile e back-end. Professor que já destravou alunos no primeiro contato com código do "Hello World" ao primeiro projeto no ar.
+      </p>
+      <p class="text-muted mt-4 leading-relaxed">
+       Acredito que bom código começa com clareza de propósito. Quando não estou desenvolvendo, estou ensinando. E quando estou ensinando, fico ainda melhor no que desenvolvo.
+      </p>
+    </div>
+    <div class="md:col-span-2 reveal">
+      <div class="rounded-xl border border-line bg-surface p-6 font-mono text-sm space-y-3">
+        <p class="text-muted">função: <span class="text-fn">dev full stack</span></p>
+        <p class="text-muted">também: <span class="text-ink">professor de tecnologia</span></p>
+        <p class="text-muted">stack: <span class="text-ink">React · Supabase · JS · Node</span></p>
+        <p class="text-muted">status: <span class="text-fn">aberto a projetos</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SERVIÇOS ============ -->
+<section id="servicos" class="border-y border-line/60 bg-surface/40">
+  <div class="max-w-6xl mx-auto px-6 py-24">
+    <p class="font-mono text-sm text-str reveal">// 02 · serviços</p>
+    <h2 class="text-3xl font-bold mt-3 reveal">O que eu faço por você</h2>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 mt-10">
+
+      <!-- Full Stack -->
+      <div class="reveal rounded-xl border border-line bg-surface p-6 card-hover">
+        <div class="flex gap-3 text-3xl mb-1">
+          <i class="devicon-nodejs-plain colored"></i>
+          <i class="devicon-react-original colored"></i>
+          <i class="devicon-postgresql-plain colored"></i>
+        </div>
+        <h3 class="font-semibold mt-4">Desenvolvimento Full Stack</h3>
+        <p class="text-muted text-sm mt-2 leading-relaxed">Sistemas web completos, APIs REST e bancos de dados escaláveis.</p>
+      </div>
+
+      <!-- Mobile -->
+      <div class="reveal rounded-xl border border-line bg-surface p-6 card-hover">
+        <div class="flex gap-3 text-3xl mb-1">
+          <i class="devicon-react-original colored"></i>
+          <i class="devicon-android-plain colored"></i>
+          <i class="devicon-apple-original text-ink"></i>
+        </div>
+        <h3 class="font-semibold mt-4">Aplicativos Mobile</h3>
+        <p class="text-muted text-sm mt-2 leading-relaxed">Apps multiplataforma de alta performance em React Native.</p>
+      </div>
+
+      <!-- Aulas -->
+      <div class="reveal rounded-xl border border-line bg-surface p-6 card-hover">
+        <div class="flex gap-3 text-3xl mb-1">
+          <i class="devicon-javascript-plain colored"></i>
+          <i class="devicon-typescript-plain colored"></i>
+          <i class="devicon-react-original colored"></i>
+        </div>
+        <h3 class="font-semibold mt-4">Aulas & Mentorias</h3>
+        <p class="text-muted text-sm mt-2 leading-relaxed">Ensino focado em lógica, Clean Code e desenvolvimento web.</p>
+      </div>
+      
+      <div class="reveal rounded-xl border border-line bg-surface p-6 card-hover">
+        <div class="flex gap-3 text-3xl mb-1">
+          <i class="devicon-postgresql-plain colored"></i>
+          <i class="devicon-git-plain colored tech-icon"></i>
+          <i class="devicon-javascript-plain colored"></i>
+        </div>
+        <h3 class="font-semibold mt-4">Mentoria & Prática de Mercado</h3>
+        <p class="text-muted text-sm mt-2 leading-relaxed">Desenvolvimento focado na rotina real: resolução de tasks, Git workflow e Clean Code.</p>
+      </div>
+
+      <!-- IA -->
+      <div class="reveal rounded-xl border border-line bg-surface p-6 card-hover">
+        <div class="flex gap-3 text-3xl mb-1 text-str">
+          <i class="devicon-python-plain colored"></i>
+          <span class="font-mono text-xl font-bold border border-str/40 px-1.5 py-0.5 rounded bg-str/10 text-str">AI</span>
+        </div>
+        <h3 class="font-semibold mt-4">Soluções com IA</h3>
+        <p class="text-muted text-sm mt-2 leading-relaxed">Integração de APIs de IA Generativa e automação de processos.</p>
+      </div>
+
+      <!-- Gestão -->
+      <div class="reveal rounded-xl border border-line bg-surface p-6 card-hover">
+        <div class="flex gap-3 text-3xl mb-1">
+          <i class="devicon-trello-plain colored"></i>
+          <i class="devicon-github-original text-ink"></i>
+        </div>
+        <h3 class="font-semibold mt-4">Gestão de Projetos & Agile</h3>
+        <p class="text-muted text-sm mt-2 leading-relaxed">Organização de fluxos, metodologias ágeis e consultoria técnica.</p>
+      </div>
+
+      <!-- Websites -->
+      <div class="reveal rounded-xl border border-line bg-surface p-6 card-hover">
+        <div class="flex gap-3 text-3xl mb-1">
+          <i class="devicon-tailwindcss-plain colored"></i>
+          <i class="devicon-figma-plain colored"></i>
+        </div>
+        <h3 class="font-semibold mt-4">Sites & Landing Pages</h3>
+        <p class="text-muted text-sm mt-2 leading-relaxed">Páginas modernas, ultra rápidas e focadas em conversão.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ HABILIDADES ============ -->
+<section id="habilidades" class="max-w-6xl mx-auto px-6 py-24">
+  <p class="font-mono text-sm text-str reveal">// 03 · habilidades</p>
+  <h2 class="text-3xl font-bold mt-3 reveal">Com o que eu trabalho</h2>
+
+  <!-- grade de ícones de tecnologias -->
+  <div class="mt-10 reveal">
+    <p class="font-mono text-xs text-muted mb-6">// tecnologias</p>
+    <div class="grid grid-cols-4 sm:grid-cols-6 lg:grid-cols-8 gap-4">
+
+      <div class="tech-item flex flex-col items-center gap-2 p-4 rounded-xl border border-line bg-surface card-hover cursor-default">
+        <i class="devicon-html5-plain colored tech-icon"></i>
+        <span class="font-mono text-xs text-muted">HTML5</span>
+      </div>
+      <div class="tech-item flex flex-col items-center gap-2 p-4 rounded-xl border border-line bg-surface card-hover cursor-default">
+        <i class="devicon-css3-plain colored tech-icon"></i>
+        <span class="font-mono text-xs text-muted">CSS3</span>
+      </div>
+      <div class="tech-item flex flex-col items-center gap-2 p-4 rounded-xl border border-line bg-surface card-hover cursor-default">
+        <i class="devicon-javascript-plain colored tech-icon"></i>
+        <span class="font-mono text-xs text-muted">JavaScript</span>
+      </div>
+      <div class="tech-item flex flex-col items-center gap-2 p-4 rounded-xl border border-line bg-surface card-hover cursor-default">
+        <i class="devicon-typescript-plain colored tech-icon"></i>
+        <span class="font-mono text-xs text-muted">TypeScript</span>
+      </div>
+      <div class="tech-item flex flex-col items-center gap-2 p-4 rounded-xl border border-line bg-surface card-hover cursor-default">
+        <i class="devicon-react-original colored tech-icon"></i>
+        <span class="font-mono text-xs text-muted">React</span>
+      </div>
+      
+      <div class="tech-item flex flex-col items-center gap-2 p-4 rounded-xl border border-line bg-surface card-hover cursor-default">
+  <i class="devicon-expo-plain tech-icon text-ink"></i>
+  <span class="font-mono text-xs text-muted">Expo</span>
+</div>
+<div class="tech-item flex flex-col items-center gap-2 p-4 rounded-xl border border-line bg-surface card-hover cursor-default">
+  <i class="devicon-supabase-plain colored tech-icon"></i>
+  <span class="font-mono text-xs text-muted">Supabase</span>
+</div>
+      <div class="tech-item flex flex-col items-center gap-2 p-4 rounded-xl border border-line bg-surface card-hover cursor-default">
+        <i class="devicon-nodejs-plain colored tech-icon"></i>
+        <span class="font-mono text-xs text-muted">Node.js</span>
+      </div>
+      <div class="tech-item flex flex-col items-center gap-2 p-4 rounded-xl border border-line bg-surface card-hover cursor-default">
+        <i class="devicon-tailwindcss-plain colored tech-icon"></i>
+        <span class="font-mono text-xs text-muted">Tailwind</span>
+      </div>
+      <div class="tech-item flex flex-col items-center gap-2 p-4 rounded-xl border border-line bg-surface card-hover cursor-default">
+  <i class="devicon-bootstrap-plain colored tech-icon"></i>
+  <span class="font-mono text-xs text-muted">Bootstrap</span>
+</div>
+      <div class="tech-item flex flex-col items-center gap-2 p-4 rounded-xl border border-line bg-surface card-hover cursor-default">
+        <i class="devicon-postgresql-plain colored tech-icon"></i>
+        <span class="font-mono text-xs text-muted">PostgreSQL</span>
+      </div>
+      <div class="tech-item flex flex-col items-center gap-2 p-4 rounded-xl border border-line bg-surface card-hover cursor-default">
+        <i class="devicon-git-plain colored tech-icon"></i>
+        <span class="font-mono text-xs text-muted">Git</span>
+      </div>
+      <div class="tech-item flex flex-col items-center gap-2 p-4 rounded-xl border border-line bg-surface card-hover cursor-default">
+        <i class="devicon-github-original tech-icon" style="color:#e8f0fe"></i>
+        <span class="font-mono text-xs text-muted">GitHub</span>
+      </div>
+      <div class="tech-item flex flex-col items-center gap-2 p-4 rounded-xl border border-line bg-surface card-hover cursor-default">
+        <i class="devicon-docker-plain colored tech-icon"></i>
+        <span class="font-mono text-xs text-muted">Docker</span>
+      </div>
+      <div class="tech-item flex flex-col items-center gap-2 p-4 rounded-xl border border-line bg-surface card-hover cursor-default">
+        <i class="devicon-figma-plain colored tech-icon"></i>
+        <span class="font-mono text-xs text-muted">Figma</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- como professor -->
+  <div class="mt-14 reveal">
+    <p class="font-mono text-xs text-muted mb-4">// como professor</p>
+    <div class="grid sm:grid-cols-3 gap-4">
+      <div class="flex items-start gap-3 rounded-lg border border-line bg-surface p-4">
+        <span class="text-fn font-mono mt-0.5">→</span>
+        <div>
+          <p class="font-semibold text-sm">Didática & Comunicação</p>
+          <p class="text-muted text-xs mt-1">Explico código de forma clara, adaptando o nível ao aluno.</p>
+        </div>
+      </div>
+      <div class="flex items-start gap-3 rounded-lg border border-line bg-surface p-4">
+        <span class="text-fn font-mono mt-0.5">→</span>
+        <div>
+          <p class="font-semibold text-sm">Planejamento de Aulas</p>
+          <p class="text-muted text-xs mt-1">Estruturo trilhas do zero para quem está começando.</p>
+        </div>
+      </div>
+      <div class="flex items-start gap-3 rounded-lg border border-line bg-surface p-4">
+        <span class="text-fn font-mono mt-0.5">→</span>
+        <div>
+          <p class="font-semibold text-sm">Mentoria de Projetos</p>
+          <p class="text-muted text-xs mt-1">Acompanho alunos na construção dos primeiros projetos reais.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROJETOS ============ -->
+<section id="projetos" class="border-y border-line/60 bg-surface/40">
+  <div class="max-w-6xl mx-auto px-6 py-24">
+    <p class="font-mono text-sm text-str reveal">// 04 · projetos</p>
+    <h2 class="text-3xl font-bold mt-3 reveal">Trabalhos, Ferramentas & Projetos com Alunos</h2>
+
+    <!-- Filtros de Projetos -->
+    <div class="flex flex-wrap gap-2 mt-8 font-mono text-sm">
+      <button class="filter-btn active px-4 py-2 rounded-md border border-fn text-fn" data-filter="todos">todos</button>
+      <button class="filter-btn px-4 py-2 rounded-md border border-line text-muted" data-filter="fullstack">full stack</button>
+      <button class="filter-btn px-4 py-2 rounded-md border border-line text-muted" data-filter="web">web & mobile</button>
+      <button class="filter-btn px-4 py-2 rounded-md border border-line text-muted" data-filter="alunos">projetos com alunos</button>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
+
+      <!-- 1. BRITO.TASKS (Autoral / Simplificação no Ensino / Alunos) -->
+      <article class="project-card reveal rounded-xl border border-line bg-surface overflow-hidden card-hover flex flex-col justify-between" data-cat="fullstack alunos">
+        <div>
+          <div class="h-36 bg-gradient-to-br from-fn/20 to-surface2 flex items-center justify-center gap-4 text-4xl">
+            <i class="devicon-typescript-plain colored"></i>
+            <i class="devicon-nodejs-plain colored"></i>
+            <i class="devicon-tailwindcss-original colored"></i>
+          </div>
+          <div class="p-5">
+            <div class="flex items-center justify-between">
+              <h3 class="font-semibold text-lg">BRITO.TASKS</h3>
+              <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-fn/10 text-fn border border-fn/20">Ensino & Prática</span>
+            </div>
+            <p class="text-muted text-sm mt-2">Plataforma criada para simplificar o ensino de programação através de desafios de lógica e validação direta de algoritmos.</p>
+            <div class="flex gap-2 mt-4 font-mono text-xs text-muted">TypeScript · Node.js · Mentoria</div>
+          </div>
+        </div>
+        <div class="px-5 pb-5 pt-2 flex items-center justify-between gap-3 border-t border-line/40 font-mono text-xs">
+          <a href="#" target="_blank" rel="noopener noreferrer" class="flex-1 text-center py-2 rounded bg-fn/10 text-fn hover:bg-fn/20 transition-colors">Preview ↗</a>
+          <a href="#" target="_blank" rel="noopener noreferrer" class="flex-1 text-center py-2 rounded border border-line text-muted hover:text-ink hover:border-ink transition-colors">GitHub ↗</a>
+        </div>
+      </article>
+
+      <!-- 2. MyMoney (Feito com Aluno / Gestão Financeira) -->
+      <article class="project-card reveal rounded-xl border border-line bg-surface overflow-hidden card-hover flex flex-col justify-between" data-cat="fullstack alunos">
+        <div>
+          <div class="h-36 bg-gradient-to-br from-str/20 to-surface2 flex items-center justify-center gap-4 text-4xl">
+            <i class="devicon-javascript-plain colored"></i>
+            <i class="devicon-html5-plain colored"></i>
+            <i class="devicon-bootstrap-plain colored tech-icon"></i>
+          </div>
+          <div class="p-5">
+            <div class="flex items-center justify-between">
+              <h3 class="font-semibold text-lg">MyMoney</h3>
+              <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-str/10 text-str border border-str/20">Projeto com Aluno</span>
+            </div>
+            <p class="text-muted text-sm mt-2">Gerenciador financeiro construído em conjunto com alunos para ensinar fluxo de caixa, relatórios e boas práticas de arquitetura.</p>
+            <div class="flex gap-2 mt-4 font-mono text-xs text-muted">BootStrap · JavaScript · Mentoria</div>
+          </div>
+        </div>
+        <div class="px-5 pb-5 pt-2 flex items-center justify-between gap-3 border-t border-line/40 font-mono text-xs">
+          <a href="#" target="_blank" rel="noopener noreferrer" class="flex-1 text-center py-2 rounded bg-str/10 text-str hover:bg-str/20 transition-colors">Preview ↗</a>
+          <a href="#" target="_blank" rel="noopener noreferrer" class="flex-1 text-center py-2 rounded border border-line text-muted hover:text-ink hover:border-ink transition-colors">GitHub ↗</a>
+        </div>
+      </article>
+
+      <!-- 3. Auth & ACL System (Feito com Alunos / Autenticação) -->
+      <article class="project-card reveal rounded-xl border border-line bg-surface overflow-hidden card-hover flex flex-col justify-between" data-cat="fullstack alunos">
+        <div>
+          <div class="h-36 bg-gradient-to-br from-fn/20 to-surface2 flex items-center justify-center gap-4 text-4xl">
+            <i class="devicon-nodejs-plain colored"></i>
+            <i class="devicon-express-original text-ink"></i>
+            <i class="devicon-javascript-plain colored"></i>
+          </div>
+          <div class="p-5">
+            <div class="flex items-center justify-between">
+              <h3 class="font-semibold text-lg">Auth & ACL System</h3>
+              <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-str/10 text-str border border-str/20">Projeto com Aluno</span>
+            </div>
+            <p class="text-muted text-sm mt-2">Sistema completo de autenticação JWT, hash de senhas e controle de acesso (RBAC) guiado na prática durante as aulas.</p>
+            <div class="flex gap-2 mt-4 font-mono text-xs text-muted">Node.js · JWT · Security · Mentoria</div>
+          </div>
+        </div>
+        <div class="px-5 pb-5 pt-2 flex items-center justify-between gap-3 border-t border-line/40 font-mono text-xs">
+          <a href="#" target="_blank" rel="noopener noreferrer" class="flex-1 text-center py-2 rounded bg-str/10 text-str hover:bg-str/20 transition-colors">Preview ↗</a>
+          <a href="#" target="_blank" rel="noopener noreferrer" class="flex-1 text-center py-2 rounded border border-line text-muted hover:text-ink hover:border-ink transition-colors">GitHub ↗</a>
+        </div>
+      </article>
+
+      <!-- 4. Weather Pulse (React JS / Clima) -->
+      <article class="project-card reveal rounded-xl border border-line bg-surface overflow-hidden card-hover flex flex-col justify-between" data-cat="web">
+        <div>
+          <div class="h-36 bg-gradient-to-br from-tag/20 to-surface2 flex items-center justify-center gap-4 text-4xl">
+            <i class="devicon-react-original colored"></i>
+            <i class="devicon-typescript-plain colored"></i>
+            <i class="devicon-materialui-plain colored"></i>
+          </div>
+          <div class="p-5">
+            <div class="flex items-center justify-between">
+              <h3 class="font-semibold text-lg">Brito Weather</h3>
+              <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-tag/10 text-tag border border-tag/20">React JS</span>
+            </div>
+            <p class="text-muted text-sm mt-2">Aplicação para consulta de clima em tempo real, previsões detalhadas e consumo de API meteorológica.</p>
+            <div class="flex gap-2 mt-4 font-mono text-xs text-muted">React JS · OpenWeather API · Tailwind</div>
+          </div>
+        </div>
+        <div class="px-5 pb-5 pt-2 flex items-center justify-between gap-3 border-t border-line/40 font-mono text-xs">
+          <a href="#" target="_blank" rel="noopener noreferrer" class="flex-1 text-center py-2 rounded bg-tag/10 text-tag hover:bg-tag/20 transition-colors">Preview ↗</a>
+          <a href="#" target="_blank" rel="noopener noreferrer" class="flex-1 text-center py-2 rounded border border-line text-muted hover:text-ink hover:border-ink transition-colors">GitHub ↗</a>
+        </div>
+      </article>
+
+      <!-- 5. AutiSteps (Acessibilidade e Inclusão) -->
+      <article class="project-card reveal rounded-xl border border-line bg-surface overflow-hidden card-hover flex flex-col justify-between" data-cat="web">
+        <div>
+          <div class="h-36 bg-gradient-to-br from-str/20 to-surface2 flex items-center justify-center gap-4 text-4xl">
+            <i class="devicon-javascript-plain colored"></i>
+            <i class="devicon-html5-plain colored"></i>
+            <i class="devicon-css3-plain colored"></i>
+          </div>
+          <div class="p-5">
+            <div class="flex items-center justify-between">
+              <h3 class="font-semibold text-lg">AutiSteps</h3>
+              <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-str/10 text-str border border-str/20">Acessibilidade</span>
+            </div>
+            <p class="text-muted text-sm mt-2">Plataforma focada em suporte inclusivo e acessibilidade (WCAG), estruturando rotinas e rotas para pessoas no espectro autista.</p>
+            <div class="flex gap-2 mt-4 font-mono text-xs text-muted">Acessibilidade · WCAG · UX/UI</div>
+          </div>
+        </div>
+        <div class="px-5 pb-5 pt-2 flex items-center justify-between gap-3 border-t border-line/40 font-mono text-xs">
+          <a href="#" target="_blank" rel="noopener noreferrer" class="flex-1 text-center py-2 rounded bg-str/10 text-str hover:bg-str/20 transition-colors">Preview ↗</a>
+          <a href="#" target="_blank" rel="noopener noreferrer" class="flex-1 text-center py-2 rounded border border-line text-muted hover:text-ink hover:border-ink transition-colors">GitHub ↗</a>
+        </div>
+      </article>
+      
+      <!-- Voz do Futuro (Acessibilidade / CAA) -->
+<article class="project-card reveal rounded-xl border border-line bg-surface overflow-hidden card-hover flex flex-col justify-between" data-cat="web">
+  <div>
+    <div class="h-36 bg-gradient-to-br from-str/20 to-surface2 flex items-center justify-center gap-4 text-4xl">
+      <i class="devicon-javascript-plain colored"></i>
+      <i class="devicon-html5-plain colored"></i>
+      <i class="devicon-bootstrap-plain colored tech-icon"></i>
+    </div>
+    <div class="p-5">
+      <div class="flex items-center justify-between">
+        <h3 class="font-semibold text-lg">Voz do Futuro</h3>
+        <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-str/10 text-str border border-str/20">Acessibilidade</span>
+      </div>
+      <p class="text-muted text-sm mt-2">Plataforma gratuita de comunicação alternativa (CAA) para dar voz a crianças não-verbais via toque na tela.</p>
+      <div class="flex gap-2 mt-4 font-mono text-xs text-muted">Acessibilidade · CAA · Inclusion</div>
+    </div>
+  </div>
+  <div class="px-5 pb-5 pt-2 flex items-center justify-between gap-3 border-t border-line/40 font-mono text-xs">
+    <a href="#" target="_blank" rel="noopener noreferrer" class="flex-1 text-center py-2 rounded bg-str/10 text-str hover:bg-str/20 transition-colors">Preview ↗</a>
+    <a href="#" target="_blank" rel="noopener noreferrer" class="flex-1 text-center py-2 rounded border border-line text-muted hover:text-ink hover:border-ink transition-colors">GitHub ↗</a>
+  </div>
+</article>
+
+<!-- AUTISMATH (CNPq / Estácio / Projeto Legado) -->
+<!-- AUTISMATH (CNPq / Estácio / Impacto Legado) -->
+<article class="project-card reveal rounded-xl border border-line bg-surface overflow-hidden card-hover flex flex-col justify-between" data-cat="web">
+  <div>
+    <div class="h-36 bg-gradient-to-br from-str/20 to-surface2 flex items-center justify-center gap-4 text-4xl">
+      <i class="devicon-javascript-plain colored"></i>
+      <i class="devicon-html5-plain colored"></i>
+      <i class="devicon-css3-plain colored"></i>
+    </div>
+    <div class="p-5">
+      <div class="flex items-center justify-between">
+        <h3 class="font-semibold text-lg">AUTISMATH</h3>
+        <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-amber-500/10 text-amber-500 border border-amber-500/20">Projeto Legado</span>
+      </div>
+      <p class="text-muted text-sm mt-2 leading-relaxed">Pesquisa científica (Estácio/CNPq) onde liderei a construção da arquitetura e integrei soluções que aprimoraram a comunicação, o aprendizado de matemática e a lógica para alunos com TEA.</p>
+      <div class="flex flex-wrap gap-2 mt-4 font-mono text-xs text-muted">Acessibilidade · TEA · Gamificação · Pesquisa CNPq</div>
+    </div>
+  </div>
+  <div class="px-5 pb-5 pt-3 border-t border-line/40 font-mono text-xs text-str flex items-center gap-2">
+    <span class="inline-block w-2 h-2 rounded-full bg-amber-500"></span>
+    <span>Impacto: Inclusão digital, evolução de lógica e melhoria contínua na comunicação de alunos neurodivergentes.</span>
+  </div>
+</article>
+
+      <!-- 6. Brito Commits (Ferramenta CLI) -->
+      <article class="project-card reveal rounded-xl border border-line bg-surface overflow-hidden card-hover flex flex-col justify-between" data-cat="web">
+        <div>
+          <div class="h-36 bg-gradient-to-br from-tag/20 to-surface2 flex items-center justify-center gap-4 text-4xl">
+            <i class="devicon-git-plain colored"></i>
+            <i class="devicon-react-original colored"></i>
+            <i class="devicon-materialui-plain colored"></i>
+          </div>
+          <div class="p-5">
+            <div class="flex items-center justify-between">
+              <h3 class="font-semibold text-lg">Brito Commits</h3>
+              <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-tag/10 text-tag border border-tag/20">CLI / DevTool</span>
+            </div>
+            <p class="text-muted text-sm mt-2">Ferramenta para automação e padronização de commits no Git, garantindo histórico limpo com Conventional Commits.</p>
+            <div class="flex gap-2 mt-4 font-mono text-xs text-muted">Git · CLI · Automation</div>
+          </div>
+        </div>
+        <div class="px-5 pb-5 pt-2 flex items-center justify-between gap-3 border-t border-line/40 font-mono text-xs">
+          <a href="#" target="_blank" rel="noopener noreferrer" class="flex-1 text-center py-2 rounded bg-tag/10 text-tag hover:bg-tag/20 transition-colors">Preview ↗</a>
+          <a href="#" target="_blank" rel="noopener noreferrer" class="flex-1 text-center py-2 rounded border border-line text-muted hover:text-ink hover:border-ink transition-colors">GitHub ↗</a>
+        </div>
+      </article>
+
+      <!-- 7. Portfólios dos Alunos (Nicolas, Lucas e Douglas) -->
+      <article class="project-card reveal rounded-xl border border-line bg-surface overflow-hidden card-hover flex flex-col justify-between" data-cat="alunos">
+        <div>
+          <div class="h-36 bg-gradient-to-br from-str/20 to-surface2 flex flex-col items-center justify-center p-4 text-center border-b border-line/40">
+            <div class="flex items-center gap-3 text-3xl mb-2">
+              <i class="devicon-html5-plain colored"></i>
+              <i class="devicon-css3-plain colored"></i>
+              <i class="devicon-javascript-plain colored"></i>
+              <i class="devicon-bootstrap-plain colored tech-icon"></i>
+                          <i class="devicon-tailwindcss-original colored"></i>
+
+            </div>
+            <span class="font-mono text-xs text-str">// mentoria de carreira & UI/UX</span>
+          </div>
+          <div class="p-5">
+            <div class="flex items-center justify-between">
+              <h3 class="font-semibold text-lg">Portfólios dos Alunos</h3>
+              <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-str/10 text-str border border-str/20">Mentoria</span>
+            </div>
+            <p class="text-muted text-sm mt-2">Projetos de portfólio pessoal desenvolvidos pelos alunos durante as mentorias, com foco em arquitetura limpa e UI moderna.</p>
+            
+            <!-- Lista com Legendas dos Alunos -->
+            <div class="mt-4 space-y-2 border-t border-line/40 pt-3">
+              <div class="flex items-center justify-between font-mono text-xs">
+                <span class="text-ink font-medium">Nicolas Gerbes</span>
+                <span class="text-muted text-[11px]">Dev Front-End</span>
+              </div>
+              <div class="flex items-center justify-between font-mono text-xs">
+                <span class="text-ink font-medium">Lucas</span>
+                <span class="text-muted text-[11px]">Dev Full Stack</span>
+              </div>
+              <div class="flex items-center justify-between font-mono text-xs">
+                <span class="text-ink font-medium">Douglas</span>
+                <span class="text-muted text-[11px]">Software Engineer</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Botões de Acesso aos Portfólios dos Alunos -->
+        <div class="px-5 pb-5 pt-2 flex flex-col gap-2 border-t border-line/40 font-mono text-xs">
+          <div class="flex items-center gap-2">
+            <a href="#" target="_blank" rel="noopener noreferrer" class="flex-1 text-center py-1.5 rounded bg-str/10 text-str hover:bg-str/20 transition-colors">Nicolas ↗</a>
+            <a href="#" target="_blank" rel="noopener noreferrer" class="flex-1 text-center py-1.5 rounded bg-str/10 text-str hover:bg-str/20 transition-colors">Lucas ↗</a>
+            <a href="#" target="_blank" rel="noopener noreferrer" class="flex-1 text-center py-1.5 rounded bg-str/10 text-str hover:bg-str/20 transition-colors">Douglas ↗</a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ DEPOIMENTOS ============ -->
+<section id="depoimentos" class="max-w-6xl mx-auto px-6 py-24">
+  <p class="font-mono text-sm text-str reveal">// 05 · depoimentos</p>
+  <h2 class="text-3xl font-bold mt-3 reveal">O que dizem os alunos</h2>
+
+  <div class="relative mt-10 reveal">
+    <!-- Carrossel wrapper -->
+    <div class="overflow-hidden rounded-2xl border border-line bg-surface">
+      <div class="testimonial-track" id="testimonial-track">
+
+        <!-- Slide 1: Nicolas Gerbes -->
+        <div class="testimonial-slide p-8 md:p-12">
+          <div class="max-w-2xl mx-auto text-center">
+            <div class="stars text-xl mb-6">★★★★★</div>
+            <p class="text-ink text-lg leading-relaxed italic">
+              "Antes da mentoria eu travava no terminal e na estrutura dos projetos. Com o Felipe, entendi o Clean Code na prática e construí meu portfólio do zero. A didática dele torna os conceitos mais complexos totalmente simples."
+            </p>
+            <div class="mt-8 flex items-center justify-center gap-3">
+              <div class="w-11 h-11 rounded-full bg-gradient-to-br from-tag to-fn flex items-center justify-center font-mono font-bold text-void">NG</div>
+              <div class="text-left">
+                <p class="font-semibold text-sm">Nicolas Gerbes</p>
+                <p class="font-mono text-xs text-muted">aluno · mentoria front-end</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 2: Felipe Loures -->
+        <div class="testimonial-slide p-8 md:p-12">
+          <div class="max-w-2xl mx-auto text-center">
+            <div class="stars text-xl mb-6">★★★★★</div>
+            <p class="text-ink text-lg leading-relaxed italic">
+              "O diferencial do Felipe é ensinar a pensar como engenheiro de software, sem atalhos mágicos. As sessões de lógica e validação me deram uma base sólida para encarar qualquer desafio técnico."
+            </p>
+            <div class="mt-8 flex items-center justify-center gap-3">
+              <div class="w-11 h-11 rounded-full bg-gradient-to-br from-str to-tag flex items-center justify-center font-mono font-bold text-void">FL</div>
+              <div class="text-left">
+                <p class="font-semibold text-sm">Felipe Loures</p>
+                <p class="font-mono text-xs text-muted">aluno · lógica & arquitetura</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 3: Lucas Dias -->
+        <div class="testimonial-slide p-8 md:p-12">
+          <div class="max-w-2xl mx-auto text-center">
+            <div class="stars text-xl mb-6">★★★★★</div>
+            <p class="text-ink text-lg leading-relaxed italic">
+              "Desenvolver projetos reais como o Autisteps lado a lado com ele me deu a confiança que faltava. Ele acompanha de perto, corrige os detalhes de Clean Code e acelera muito a nossa evolução."
+            </p>
+            <div class="mt-8 flex items-center justify-center gap-3">
+              <div class="w-11 h-11 rounded-full bg-gradient-to-br from-fn to-str flex items-center justify-center font-mono font-bold text-void">LD</div>
+              <div class="text-left">
+                <p class="font-semibold text-sm">Lucas Dias</p>
+                <p class="font-mono text-xs text-muted">aluno · desenvolvimento full stack</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Controles -->
+    <div class="flex items-center justify-center gap-4 mt-6">
+      <button id="prev-btn" class="w-10 h-10 rounded-full border border-line bg-surface text-muted hover:border-fn hover:text-fn transition-colors font-mono text-lg">‹</button>
+      <div class="flex items-center gap-2" id="dots"></div>
+      <button id="next-btn" class="w-10 h-10 rounded-full border border-line bg-surface text-muted hover:border-fn hover:text-fn transition-colors font-mono text-lg">›</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTATO ============ -->
+<section id="contato" class="border-t border-line/60 bg-surface/40">
+  <div class="max-w-6xl mx-auto px-6 py-24">
+    <p class="font-mono text-sm text-str reveal">// 06 · contato</p>
+    <div class="grid md:grid-cols-2 gap-14 mt-6">
+      <div class="reveal">
+        <h2 class="text-3xl font-bold">Vamos conversar?</h2>
+        <p class="text-muted mt-4 leading-relaxed max-w-sm">
+          Aberto a projetos full stack, aulas particulares, workshops e parcerias. Me manda uma mensagem!
+        </p>
+        <div class="mt-8 space-y-3 font-mono text-sm">
+          <p class="text-muted">email: <a href="mailto:felipe.brito@email.com" class="text-fn hover:underline">felipe.brito@email.com</a></p>
+          <p class="text-muted">github: <a href="#" class="text-fn hover:underline">github.com/felipebrito</a></p>
+          <p class="text-muted">linkedin: <a href="#" class="text-fn hover:underline">linkedin.com/in/felipebrito</a></p>
+        </div>
+      </div>
+
+      <form id="contact-form" class="reveal rounded-xl border border-line bg-surface p-6 space-y-4" novalidate>
+        <div>
+          <label class="font-mono text-xs text-muted" for="name">nome</label>
+          <input id="name" type="text" class="w-full mt-1 bg-surface2 border border-line rounded-md px-3 py-2 text-sm text-ink focus:outline-none focus:border-fn" placeholder="Seu nome">
+          <p class="error-msg text-xs text-tag mt-1 hidden">Digite seu nome.</p>
+        </div>
+        <div>
+          <label class="font-mono text-xs text-muted" for="email">email</label>
+          <input id="email" type="email" class="w-full mt-1 bg-surface2 border border-line rounded-md px-3 py-2 text-sm text-ink focus:outline-none focus:border-fn" placeholder="voce@email.com">
+          <p class="error-msg text-xs text-tag mt-1 hidden">Digite um email válido.</p>
+        </div>
+        <div>
+          <label class="font-mono text-xs text-muted" for="message">mensagem</label>
+          <textarea id="message" rows="4" class="w-full mt-1 bg-surface2 border border-line rounded-md px-3 py-2 text-sm text-ink focus:outline-none focus:border-fn" placeholder="Como posso ajudar?"></textarea>
+          <p class="error-msg text-xs text-tag mt-1 hidden">Escreva sua mensagem.</p>
+        </div>
+        <button type="submit" class="w-full py-3 rounded-md bg-fn text-void font-mono font-semibold hover:bg-ink transition-colors">enviar_mensagem()</button>
+        <p id="form-success" class="hidden text-sm font-mono text-fn text-center">✓ Mensagem pronta para envio!</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="border-t border-line/60">
+  <div class="max-w-6xl mx-auto px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-3">
+    <p class="font-mono text-xs text-muted">&lt;/&gt; feito por Felipe Brito — 2026</p>
+    <p class="font-mono text-xs text-muted">Todos os direitos reservados.</p>
+  </div>
+</footer>
+
+<script src="./scripts/interaction.js"></script>
+
+</body>
+</html>
