@@ -4,11 +4,11 @@ import { fetchTemplate } from '../services/templateService.js';
 export async function renderMainComponents() {
     await Promise.all(
         mainComponents.map(async ([id, path]) => {
-            const element = document.getElementById(id);
-            if (!element) return;
-
-            const html = await fetchTemplate(`./components/${file}`);
-            if (html) element.innerHTML = html;
+            const html = await fetchTemplate(path);
+            const container = document.getElementById(id);
+            if (container && html) {
+                container.innerHTML = html;
+            }
         })
     );
 }
