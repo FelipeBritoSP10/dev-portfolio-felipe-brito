@@ -33,6 +33,7 @@ const projectCards = [
     "plataforma-cursos",
     "portfolios-alunos",
     "brito-weather",
+    "brito-recipes",
     "eeteapa",
     "feirao-ceasa",
     "da-roca",
