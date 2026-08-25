@@ -3,7 +3,7 @@ import { fetchTemplate } from '../services/templateService.js';
 
 export async function renderMainComponents() {
     await Promise.all(
-        mainComponents.map(async ([id, file]) => {
+        mainComponents.map(async ([id, path]) => {
             const element = document.getElementById(id);
             if (!element) return;
 
