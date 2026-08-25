@@ -1,16 +1,16 @@
 export const mainComponents = [
     // Layout
-    ["navbar", "./components/navbar.html"],
-    ["footer", "./components/footer.html"],
+    ["navbar", "./components/layout/navbar.html"],
+    ["footer", "./components/layout/footer.html"],
 
     // Sections
-    ["hero", "./components/hero.html"],
-    ["sobre", "./components/sobre.html"],
-    ["servicos", "./components/servicos.html"],
-    ["habilidades", "./components/habilidades.html"],
-    ["projetos", "./components/projetos.html"],
-    ["depoimentos", "./components/depoimentos.html"],
-    ["contatos", "./components/contatos.html"]
+    ["hero", "./components/sections/hero.html"],
+    ["sobre", "./components/sections/sobre.html"],
+    ["servicos", "./components/sections/servicos.html"],
+    ["habilidades", "./components/sections/habilidades.html"],
+    ["projetos", "./components/sections/projetos.html"],
+    ["depoimentos", "./components/sections/depoimentos.html"],
+    ["contatos", "./components/sections/contatos.html"]
 ];
 
 export const projectCards = [
