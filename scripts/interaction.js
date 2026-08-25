@@ -30,6 +30,7 @@ const projectCards = [
     "numerix",
     "sistema-medicamentos",
     "nike",
+    "sistema-autenticacao",
     "plataforma-cursos",
     "portfolios-alunos",
     "brito-weather",
