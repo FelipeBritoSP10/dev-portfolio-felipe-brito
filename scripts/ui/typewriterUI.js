@@ -1,4 +1,4 @@
-import { typewriterTexts } from '../../config/typewriter.js';
+import { typewriterTexts } from '../config/typewriter.js';
 
 export function initTypewriter() {
     const element = document.getElementById("typewriter");
