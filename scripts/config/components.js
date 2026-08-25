@@ -1,16 +1,16 @@
 export const mainComponents = [
     // Layout
-    { id: "navbar", path: "./components/layout/navbar.html" },
-    { id: "footer", path: "./components/layout/footer.html" },
+    ["navbar", "components/layout/navbar.html"],
+    ["footer", "components/layout/footer.html"],
 
     // Sections
-    { id: "hero", path: "./components/sections/hero.html" },
-    { id: "sobre", path: "./components/sections/sobre.html" },
-    { id: "servicos", path: "./components/sections/servicos.html" },
-    { id: "habilidades", path: "./components/sections/habilidades.html" },
-    { id: "projetos", path: "./components/sections/projetos.html" },
-    { id: "depoimentos", path: "./components/sections/depoimentos.html" },
-    { id: "contatos", path: "./components/sections/contatos.html" }
+    ["hero", "components/sections/hero.html"],
+    ["sobre", "components/sections/sobre.html"],
+    ["servicos", "components/sections/servicos.html"],
+    ["habilidades", "components/sections/habilidades.html"],
+    ["projetos", "components/sections/projetos.html"],
+    ["depoimentos", "components/sections/depoimentos.html"],
+    ["contatos", "components/sections/contatos.html"]
 ];
 
 export const projectCards = [
