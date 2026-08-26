@@ -26,6 +26,7 @@ export const projectCards = [
     "portfolios-alunos",
     "brito-weather",
     "brito-recipes",
+    "brito-study",
     "eeteapa",
     "feirao-ceasa",
     "da-roca",
